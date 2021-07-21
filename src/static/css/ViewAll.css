@@ -1,0 +1,38 @@
+.viewAll {
+    height: 100%;
+    width: 100%;
+}
+
+.viewAll__top {
+    height: 17%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.viewAll__topButtonContainer {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.viewAll__topButton {
+    height: 83%;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-decoration: none;
+    color: white;
+    border-radius: 12px;
+}
+
+.viewAll__table {
+    height: 87%;
+}
+
+.center {
+    text-align: center;
+}

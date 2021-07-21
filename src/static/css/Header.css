@@ -1,0 +1,40 @@
+.header {
+    height: 100%;
+    width: 100%;
+}
+
+.header__top {
+    height: 60%;
+    display: flex;
+    align-items: center;
+    padding-left: 5%;
+    font-size: 1.5vw;
+}
+
+.header__top > h1 {
+    background: -webkit-linear-gradient( rgb(39, 39, 39), rgba(68, 68, 68, 0.753));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header__bottom {
+    height: 40%;
+}
+
+.header__bottomButtonContainer {
+    width: 60%;
+    height: 100%;
+    display: flex;
+}
+
+.header__bottomButton {
+    height: 100%;
+    width: 10%;
+    border-right: 1px solid darkgray;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-decoration: none;
+    color: white;
+    font-size: 0.84vw;
+}
