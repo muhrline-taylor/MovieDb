@@ -1,12 +1,12 @@
 package com.taylormuhrline.moviedb.models;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,8 +14,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -24,23 +22,26 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
-@Table(name="directors")
-public class Director {
-	
-	// FIELDS ---------------------------------------------- //
+@Table(name="users")
+public class User {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	private String fname;
+	private String email;
 	
-	@NotNull
-	@Size(min=1)
-	private String lname;
+	private String username;
 	
-	@OneToMany(mappedBy="director", cascade=CascadeType.PERSIST)
-	private Set<Movie> movies = new HashSet<Movie>();
+	private String password;
+	
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="seller")
+	private List<Product> selling = new ArrayList<Product>();
+	
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="buyer")
+	private List<Product> buying = new ArrayList<Product>();
+	
+	
 	
 	@Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -55,24 +56,23 @@ public class Director {
     
     
     
-    // CONSTRUCTORS ------------------------------------------- //
+    // CONSTRUCTORS =============================================== //
     
-    public Director(@NotNull String lname) {
+    
+    public User(String email, String username, String password) {
 		super();
-		this.lname = lname;
+		this.email = email;
+		this.username = username;
+		this.password = password;
 	}
-	public Director(String fname, @NotNull String lname) {
-		super();
-		this.fname = fname;
-		this.lname = lname;
-	}
-	public Director() {
+	public User() {
 		super();
 	}
 	
 	
 	
-	// GETTERS AND SETTERS -------------------------------------------- //
+	
+	// GETTERS AND SETTERS ========================================= //
     
 	public Long getId() {
 		return id;
@@ -80,23 +80,35 @@ public class Director {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getFname() {
-		return fname;
+	public String getEmail() {
+		return email;
 	}
-	public void setFname(String fname) {
-		this.fname = fname;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public String getLname() {
-		return lname;
+	public String getUsername() {
+		return username;
 	}
-	public void setLname(String lname) {
-		this.lname = lname;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-	public Set<Movie> getMovies() {
-		return movies;
+	public String getPassword() {
+		return password;
 	}
-	public void setMovies(Set<Movie> movies) {
-		this.movies = movies;
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public List<Product> getSelling() {
+		return selling;
+	}
+	public void setSelling(List<Product> selling) {
+		this.selling = selling;
+	}
+	public List<Product> getBuying() {
+		return buying;
+	}
+	public void setBuying(List<Product> buying) {
+		this.buying = buying;
 	}
 	public Date getCreatedAt() {
 		return createdAt;
@@ -122,8 +134,30 @@ public class Director {
     
     
     
-	
-	
-	
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 }

@@ -53,7 +53,7 @@ public class Movie {
 	
 	private String poster;
 	
-	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	@ManyToMany(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
 	@JoinTable(
 				name="movies_actors",
 				joinColumns= {@JoinColumn(name="movie_id")},

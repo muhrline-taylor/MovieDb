@@ -63,7 +63,7 @@ public class MovieController {
 		Director director = optionalDirector.get();
 		Set<Movie> directorsMovies = director.getMovies();
 		
-		Movie newMovie = rawMovie;
+		Movie newMovie = movieRepository.save(rawMovie);
 		
 		directorsMovies.add(newMovie);
 		
@@ -71,11 +71,11 @@ public class MovieController {
 		director.setMovies(directorsMovies);
 		System.out.println(director.getMovies());
 		
-		Movie savedMovie = movieRepository.save(newMovie);
-		directorRepository.save(director);
+		
+		
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-	            .buildAndExpand(savedMovie.getId()).toUri();
-		return ResponseEntity.created(location).body(savedMovie);		
+	            .buildAndExpand(newMovie.getId()).toUri();
+		return ResponseEntity.created(location).body(newMovie);		
 	}
 	
 	@PostMapping("/new/testing")

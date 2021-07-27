@@ -1,21 +1,19 @@
 package com.taylormuhrline.moviedb.models;
 
+import java.math.BigDecimal;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -24,23 +22,24 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
-@Table(name="directors")
-public class Director {
-	
-	// FIELDS ---------------------------------------------- //
+@Table(name="products")
+public class Product {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	private String fname;
+	private String name;
 	
-	@NotNull
-	@Size(min=1)
-	private String lname;
+	private BigDecimal price;
 	
-	@OneToMany(mappedBy="director", cascade=CascadeType.PERSIST)
-	private Set<Movie> movies = new HashSet<Movie>();
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="buyer_id")
+	private User buyer;
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="seller_id")
+	private User seller;
 	
 	@Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -55,24 +54,26 @@ public class Director {
     
     
     
-    // CONSTRUCTORS ------------------------------------------- //
+    // CONSTRUCTORS ===================================== //
     
-    public Director(@NotNull String lname) {
+    public Product(String name, BigDecimal price, User seller) {
 		super();
-		this.lname = lname;
+		this.name = name;
+		this.price = price;
+		this.seller = seller;
 	}
-	public Director(String fname, @NotNull String lname) {
+	public Product() {
 		super();
-		this.fname = fname;
-		this.lname = lname;
 	}
-	public Director() {
+	public Product(String name, BigDecimal price) {
 		super();
+		this.name = name;
+		this.price = price;
 	}
 	
 	
 	
-	// GETTERS AND SETTERS -------------------------------------------- //
+	// GETTERS AND SETTERS ============================================= //
     
 	public Long getId() {
 		return id;
@@ -80,23 +81,29 @@ public class Director {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getFname() {
-		return fname;
+	public String getName() {
+		return name;
 	}
-	public void setFname(String fname) {
-		this.fname = fname;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getLname() {
-		return lname;
+	public BigDecimal getPrice() {
+		return price;
 	}
-	public void setLname(String lname) {
-		this.lname = lname;
+	public void setPrice(BigDecimal price) {
+		this.price = price;
 	}
-	public Set<Movie> getMovies() {
-		return movies;
+	public User getBuyer() {
+		return buyer;
 	}
-	public void setMovies(Set<Movie> movies) {
-		this.movies = movies;
+	public void setBuyer(User buyer) {
+		this.buyer = buyer;
+	}
+	public User getSeller() {
+		return seller;
+	}
+	public void setSeller(User seller) {
+		this.seller = seller;
 	}
 	public Date getCreatedAt() {
 		return createdAt;
@@ -122,6 +129,20 @@ public class Director {
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+	
+	
 	
 	
 	
