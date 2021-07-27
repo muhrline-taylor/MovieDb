@@ -32,12 +32,12 @@ function ViewOneDirector({ ...props }) {
                         :`${director.lname}`
                     }
                     </h1>
-                    <p>
+                    <p> Movies:
                         {
                             director.movies ?
                                 director.movies[0] ?
                                 director.movies.map((movie, k) => (
-                                    movie.name
+                                    <a href={`/movies/${movie.id}`}>{movie.name}</a>
                                 )):""
                             :""
                         }

@@ -30,13 +30,15 @@ function ViewOneMovie({ ...props }) {
                     {
                         
                         movie.director ?
-                        <p>{movie.director.fname ? movie.director.fname:""} {movie.director.lname}</p>:""
+                        <p><a href={`/directors/${movie.director.id}`}>{movie.director.fname ? movie.director.fname:""} {movie.director.lname}</a></p>:""
                     }
                     <img 
                         src={movie.poster} 
                         alt={`${movie.name}_poster`}
                         style={{ width: "20vw", height: "auto" }}
                     />
+
+                    <p>Set Director: </p>
 
 
 

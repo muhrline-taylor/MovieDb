@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom';
 import MainService from '../services/MainService';
 
 function CreateMovie() {
+    const history = useHistory();
     const [movieForm, setMovieForm] = useState({
         name: "",
         year: 2000,
@@ -37,6 +39,7 @@ function CreateMovie() {
         MainService.createMovie(movieForm, directorId)
             .then(res => {
                 console.log(res);
+                history.push("/movies");
             })
             .catch(err => {
                 console.log(err);

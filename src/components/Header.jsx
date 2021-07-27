@@ -27,7 +27,24 @@ function Header() {
                     >
                         Actors
                     </a>
-                    
+                    <a 
+                        className="header__bottomButton"
+                        href="/users/register"
+                    >
+                        Register
+                    </a>
+                    <a 
+                        className="header__bottomButton"
+                        href="/users/login"
+                    >
+                        Log In
+                    </a>
+                    <a 
+                        className="header__bottomButton"
+                        href="/store/products"
+                    >
+                        Products
+                    </a>
                 </div>
             </div>
         </div>

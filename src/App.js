@@ -15,6 +15,12 @@ import ViewOneActor from "./components/ViewOneActor";
 import CreateDirector from "./components/CreateDirector";
 import CreateActor from "./components/CreateActor";
 import CreateMovie from "./components/CreateMovie";
+import AddActorsToMovie from "./components/AddActorsToMovie";
+import CreateUser from "./components/CreateUser";
+import LoginUser from "./components/LoginUser";
+import CreateProduct from "./components/CreateProduct";
+import ViewAllProducts from "./components/ViewAllProducts";
+import BuyProduct from "./components/BuyProduct";
 
 function App() {
   return (
@@ -28,10 +34,13 @@ function App() {
         <Router>
 
           <Switch>
+            <Route exact path="/movies/:id/actors/add" component={AddActorsToMovie}></Route>
             <Route exact path="/movies/new" component={CreateMovie}></Route>
             <Route exact path="/movies/:id" component={ViewOneMovie}></Route>
             <Route exact path="/movies" component={ViewAllMovies}></Route>
           </Switch>
+
+          
           
           
           
@@ -54,6 +63,23 @@ function App() {
             <Route exact path="/actors" component={ViewAllActors}></Route>
           </Switch>
           
+
+
+
+          <Switch>
+            <Route exact path="/users/register" component={CreateUser}></Route>
+            <Route exact path="/users/login" component={LoginUser}></Route>
+
+          </Switch>
+
+
+          <Switch>
+            <Route exact path="/store/products/create" component={CreateProduct}></Route>
+            <Route exact path="/store/products" component={ViewAllProducts}></Route>
+            <Route exact path="/store/products/:id/buy" component={BuyProduct}></Route>
+
+
+          </Switch>
 
 
 

@@ -38,8 +38,7 @@ function ViewAllDirectors() {
 
                     <tr>
 
-                        <th>First Name</th>
-                        <th>Last Name</th>
+                        <th>Name</th>
                         <th>Movies</th>
                         <th>Actions</th>
 
@@ -49,11 +48,10 @@ function ViewAllDirectors() {
                         directors.map((director, k) => (
                             <tr>
 
-                                <td className="center">{director.fname ? director.fname:""}</td>
-                                <td className="center">{director.lname}</td>
+                                <td className="center"><a href={`/directors/${director.id}`}>{director.fname ? `${director.fname} ${director.lname}`:`${director.lname}`}</a></td>
                                 <td className="center">{
                                         director.movies.map((movie, key) => (
-                                            movie.name
+                                            <a href={`/movies/${movie.id}`}>{movie.name}</a>
                                         ))
                                     }</td>
                                 <td className="center">_ACTIONS_</td>

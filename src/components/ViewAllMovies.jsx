@@ -49,16 +49,40 @@ function ViewAllMovies() {
                     {
                         movies.map((movie, k) => (
                             <tr>
-                                <td className="center">{movie.name}</td>
-                                <td className="center">{movie.director ? movie.director.fname:""}</td>
+                                <td className="center"><a href={`/movies/${movie.id}`}>{movie.name}</a></td>
+                                <td className="center">
+                                        {movie.director ? 
+                                            movie.director.fname ?
+                                                <a href={`/directors/${movie.director.id}`}>
+                                                    {movie.director.fname}&nbsp;
+                                                    {movie.director.lname}
+                                                </a>
+                                            :<a href={`${movie.director.id}`}>
+                                                {movie.direct.lname}
+                                            </a>
+                                        :""}
+                                </td>
                                 <td className="center">{movie.year}</td>
                                 <td className="center">{
                                     movie.actors ?
                                     movie.actors.map((actor, key) => (
                                         `${actor}`
                                     )):""
-                                }</td>
-                                <td className="center">_ACTIONS_</td>
+                                } 
+                                <a 
+                                    href={`/movies/${movie.id}/actors/add`}
+                                >   
+                                    Add Actors
+                                </a>
+                                </td>
+                                <td className="center">
+
+                                    {/* ACTIONS */}
+
+                                    
+
+
+                                </td>
 
 
                             </tr>
